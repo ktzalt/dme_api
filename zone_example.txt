@@ -1,0 +1,39 @@
+# MASTER
+
+$ORIGIN .		; optional
+$TTL 7200	; 2 hours
+agent.com	IN SOA	ns1.dns-made-easy.com. (
+				YYYYMMDDVV ; serial
+				3600      ; refresh (1 hour)
+				600       ; retry (10 minutes)
+				777600    ; expire (1 week 2 days)
+				300       ; negative ttl (5 minutes)
+				)
+$TTL 3600  ; 1 hour
+					NS		ns1.moxiworks.com.
+					NS	 	ns2.moxiworks.com.
+					NS	 	ns3.moxiworks.com.
+$TTL 300	 ; 5 minutes
+					ANAME		www
+$ORIGIN	agent.com. 	; optional
+www				CNAME		lb.servers.com
+
+# SLAVE
+
+$ORIGIN . 	; optional
+$TTL 7200	; 2 hours
+agent.com	IN SOA	ns1.dns-made-easy.com. (
+				YYYYMMDDVV ; serial
+				3600      ; refresh (1 hour)
+				600       ; retry (10 minutes)
+				777600    ; expire (1 week 2 days)
+				300       ; negative ttl (5 minutes)
+				)
+$TTL 3600  ; 1 hour
+					NS		ns1.moxiworks.com.
+					NS	 	ns2.moxiworks.com.
+					NS	 	ns3.moxiworks.com.
+$TTL 300	 ; 5 minutes
+					A			#.#.#.#		
+$ORIGIN	agent.com. ; optional
+www				CNAME		lb.servers.com.
