@@ -1,4 +1,4 @@
-class Dme
+class Dme < ApplicationRecord
   def initialize
     @api = DnsMadeEasy.new(Rails.application.secrets.api_key, Rails.application.secrets.secret_key, sandbox=TRUE)
   end
@@ -10,7 +10,7 @@ class Dme
   end
 
   def show_domains
-    @api.domains
+    return @api.domains
   rescue => e
     Rails.logger.warn e.message
     'failed to return domains'
@@ -42,5 +42,4 @@ class Dme
     Rails.logger.warn e.message
     "failed to create #{value} mx record"
   end
-
 end

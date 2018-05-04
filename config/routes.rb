@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  get 'domains' => 'dme#show_domains'
-  post 'zone' => 'dme#create_zone'
+
+  # DOMAIN
+  get '/api/domains' => 'dme#show_domains'
+
+  # ZONE
+  post '/api/zone' => 'dme#create_zone'
+  
 end

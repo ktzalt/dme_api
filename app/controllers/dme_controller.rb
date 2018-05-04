@@ -2,7 +2,7 @@ class DmeController < ApplicationController
 
   # Show all domains -> GET domains
   def show_domains
-    dme.show_domains
+    render json: dme.show_domains
   end
 
   # Create a domain
@@ -61,7 +61,7 @@ class DmeController < ApplicationController
   end
 
   # Creates the default ANAME and CNAME records for all zones
-  def create_default_records(mx_type)
+  def create_default_records
     create_record(params[:domain], '', 'ANAME', 'www', {})
     create_record(params[:domain], 'www', 'CNAME', 'lb.moxiworks.com', {})
   end
