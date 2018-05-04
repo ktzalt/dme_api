@@ -3,43 +3,52 @@ class Dme < ApplicationRecord
     @api = DnsMadeEasy.new(Rails.application.secrets.api_key, Rails.application.secrets.secret_key, sandbox=TRUE)
   end
 
-  def validate_domain(domain)
-    domain_regex = /^[^-][a-z0-9-]+\.[a-z]+$/
-    return false unless domain_regex.match(domain)
-    true
-  end
-
-  def show_domains
-    return @api.domains
+  # Shows a single domain
+  def show_domain(domain)
+    @api.domain(domain)
   rescue => e
+    puts "Failed to retrieve data for #{domain}"
     Rails.logger.warn e.message
-    'failed to return domains'
   end
 
+
+  # Shows all domains
+  def show_domains
+    @api.domains
+  rescue => e
+    puts 'failed to return domains'
+    Rails.logger.warn e.message
+  end
+
+  # Creates a domain
   def create_domain(domain)
-    return unless validate_domain(domain)
-    begin
-      @api.create_domain(domain)
-    rescue => e
-      Rails.logger.warn e.message
-      'failed to create domain'
-    end
+    @api.create_domain(domain)
+  rescue => e
+    puts "Failed to create #{domain}"
+    Rails.logger.warn e.message
   end
 
+  # Deletes a domain
+  def delete_domain(domain)
+    @api.delete_domain(domain)
+  rescue => e
+    puts "Failed to delete #{domain}"
+    Rails.logger.warn e.message
+  end
+
+  # Creates any kind of record
   def create_record(domain, key, record_type, value, ttl)
-    return unless validate_domain(domain)
-    begin
-      @api.create_record(domain, key, record_type, value, ttl)
-    rescue => e
-      Rails.logger.warn e.message
-      "failed to create #{record_type} record"
-    end
+    @api.create_record(domain, key, record_type, value, ttl)
+  rescue => e
+    puts "failed to create #{record_type} record"
+    Rails.logger.warn e.message
   end
 
+  # Creates MX records
   def create_mx_record(domain, key, priority, value, options)
     @api.create_mx_record(domain, key, priority, value, options)
   rescue => e
+    puts "failed to create #{value} record"
     Rails.logger.warn e.message
-    "failed to create #{value} mx record"
   end
 end
