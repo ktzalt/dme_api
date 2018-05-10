@@ -4,11 +4,17 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import IconSearch from 'material-ui/svg-icons/action/search';
+import IconDeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import IconDNS from 'material-ui/svg-icons/action/dns';
+import IconBuild from 'material-ui/svg-icons/action/build';
+import IconFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import './App.css';
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+const addDomainIcon = <IconDNS />;
+const deleteDomainIcon = <IconDeleteForever />;
 const searchIcon = <IconSearch />;
+const addRecordIcon = <IconBuild />;
+const digIcon = <IconFavoriteBorder />
 
 
 class App extends Component {
@@ -24,19 +30,29 @@ class App extends Component {
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
             <BottomNavigationItem
-              label="Recents"
-              icon={recentsIcon}
+              label="Add Domain"
+              icon={addDomainIcon}
               onClick={() => this.select(0)}
             />
             <BottomNavigationItem
-              label="Favorites"
-              icon={favoritesIcon}
+              label="Delete Domain"
+              icon={deleteDomainIcon}
               onClick={() => this.select(1)}
             />
             <BottomNavigationItem
               label="Search"
               icon={searchIcon}
               onClick={() => this.select(2)}
+            />
+            <BottomNavigationItem
+              label="Add Record"
+              icon={addRecordIcon}
+              onClick={() => this.select(3)}
+            />
+            <BottomNavigationItem
+              label="Dig"
+              icon={digIcon}
+              onClick={() => this.select(4)}
             />
           </BottomNavigation>
         </Paper>
