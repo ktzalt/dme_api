@@ -1,5 +1,10 @@
 class DmeController < ApplicationController
 
+  ######################################################################################
+  ## VALIDATE USER INPUT
+  ######################################################################################
+
+
   # Validates inputted domain
   def validate_domain
     domain_regex = /^[^-][a-z0-9-]+\.[a-z]+$/
@@ -14,6 +19,7 @@ class DmeController < ApplicationController
     return true
   end
 
+  # Validates params
   def validate_params
     if validate_domain == true && validate_mx_type == true
       puts 'params are valid'
@@ -24,6 +30,10 @@ class DmeController < ApplicationController
     end
   end
 
+  ######################################################################################
+  ## SHOW DATA
+  ######################################################################################
+
   # Show all domains -> GET domains
   def show_domains
     render json: dme.show_domains
@@ -31,13 +41,12 @@ class DmeController < ApplicationController
 
   # Show a specific domain
   def show_domain
-    render json: dme.show_domain(params[:domain])
+    render json: dme.show_domain("#{params[:domain]}.com")
   end
 
-  # Create a domain
-  def create_domain
-    dme.create_domain(params[:domain])
-  end
+  ######################################################################################
+  ## CREATE RECORD GROUPS
+  ######################################################################################
 
   # Creates Google MX and CNAME records 
   def create_gmail_records
@@ -101,14 +110,23 @@ class DmeController < ApplicationController
     end
   end
 
+  ######################################################################################
+  ## AGENT DOMAIN
+  ######################################################################################
 
   # Creates the agent zone in DME
-  def create_zone
+  def create_agent_domain
     return false unless validate_params
-    create_domain
+    dme.create_domain(params[:domain])
     create_default_records
     create_additional_records
     show_domain
+  end
+
+  # Deletes the agent zone in DME
+  def delete_agent_domain
+    return false unless validate_domain
+    dme.delete_domain(params[:domain])
   end
 
 end
