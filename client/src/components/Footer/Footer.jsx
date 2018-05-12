@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
@@ -8,7 +7,6 @@ import IconDeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import IconDNS from 'material-ui/svg-icons/action/dns';
 import IconBuild from 'material-ui/svg-icons/action/build';
 import IconFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import './App.css';
 
 const addDomainIcon = <IconDNS />;
 const deleteDomainIcon = <IconDeleteForever />;
@@ -17,7 +15,7 @@ const addRecordIcon = <IconBuild />;
 const digIcon = <IconFavoriteBorder />
 
 
-class App extends Component {
+class Footer extends Component {
   state = {
     selectedIndex: 0,
   };
@@ -61,4 +59,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Footer;
