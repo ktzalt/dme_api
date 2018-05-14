@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
-import './App.css';
-import MainGrid from '../AppPaper/AppPaper';
+import AppGrid from '../AppGrid/AppGrid';
 import Footer from "../Navbar/Navbar";
 
 
@@ -12,7 +10,7 @@ class App extends Component {
 
   render() {
     return (
-      <MainGrid />
+      <AppGrid />
     );
   }
 }
