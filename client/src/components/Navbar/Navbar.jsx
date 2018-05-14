@@ -15,7 +15,7 @@ const addRecordIcon = <IconBuild />;
 const digIcon = <IconFavoriteBorder />
 
 
-class Footer extends Component {
+class Navbar extends Component {
   state = {
     selectedIndex: 0,
   };
@@ -59,4 +59,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default Navbar;

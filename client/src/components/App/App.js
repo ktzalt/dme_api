@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import Footer from "../Footer/Footer"
+import MainGrid from '../AppPaper/AppPaper';
+import Footer from "../Navbar/Navbar";
 
 
 class App extends Component {
@@ -10,12 +12,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id="app">
-        <div id="thing"></div>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
+      <MainGrid />
     );
   }
 }
