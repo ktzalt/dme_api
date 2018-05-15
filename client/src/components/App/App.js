@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import AppGrid from '../AppGrid/AppGrid';
-import Footer from "../Navbar/Navbar";
-
 
 class App extends Component {
   state = {
@@ -10,7 +9,9 @@ class App extends Component {
 
   render() {
     return (
-      <AppGrid />
+      <BrowserRouter>
+        <AppGrid />
+      </BrowserRouter>
     );
   }
 }
