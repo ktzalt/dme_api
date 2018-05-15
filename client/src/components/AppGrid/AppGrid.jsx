@@ -13,10 +13,8 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: 625,
-    width: 675,
-    marginTop: 100,
-    marginStart: 120,
+    height: 600,
+    marginTop: 50,
   },
 });
 
@@ -26,14 +24,20 @@ function AppGrid(props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
-        <Grid item xs={12}>
+
+        <Grid item xs={2} md={2} lg={2} />
+        <Grid item xs={8} md={8} lg={8}>
           <Navbar />
         </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper} elevation={16}>
-        
-          </Paper>
+        <Grid item xs={2} md={2} lg={2} />
+      </Grid>
+      
+      <Grid container spacing={40}>
+        <Grid item xs={2} md={2} lg={2} />
+        <Grid item xs={8} md={8} lg={8}>
+          <Paper className={classes.paper} elevation={16}></Paper>
         </Grid>
+        <Grid item xs={2} md={2} lg={2} />
       </Grid>
     </div>
   );
