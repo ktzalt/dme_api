@@ -39,26 +39,16 @@ class Navbar extends Component {
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
             <BottomNavigationItem 
-              label={
-                <Link to='/' 
-                      className={this.props.classes.link}
-                >
-                  Add Domain
-                </Link>
-              }
+              label={ 'Add Domain' }
               icon={addDomainIcon}
               onClick={() => this.select(0)}
+              containerElement={<Link to="/"/>}
             />
             <BottomNavigationItem
-              label={
-                <Link to='/' 
-                      className={this.props.classes.link}
-                >
-                  Delete Domain
-                </Link>
-              }
+              label={ 'Delete Domain' }
               icon={deleteDomainIcon}
               onClick={() => this.select(1)}
+              containerElement={<Link to="/deleteDomain"/>}
             />
             <BottomNavigationItem
               label={
