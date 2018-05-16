@@ -11,11 +11,17 @@ import IconDNS from 'material-ui/svg-icons/action/dns';
 import IconBuild from 'material-ui/svg-icons/action/build';
 import IconFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-const addDomainIcon = <IconDNS />;
-const deleteDomainIcon = <IconDeleteForever />;
-const searchIcon = <IconSearch />;
-const addRecordIcon = <IconBuild />;
-const digIcon = <IconFavoriteBorder />
+const iconStyle = {
+  color: 'inherit', 
+  transform: 'scale(1.6)',
+  marginTop: 7,
+};
+
+const addDomainIcon = <IconDNS style={iconStyle} />;
+const deleteDomainIcon = <IconDeleteForever style={iconStyle}/>;
+const searchIcon = <IconSearch style={iconStyle}/>;
+const addRecordIcon = <IconBuild style={iconStyle}/>;
+const digIcon = <IconFavoriteBorder style={iconStyle}/>
 
 const styles = ({
   link: { 
@@ -38,50 +44,30 @@ class Navbar extends Component {
       <MuiThemeProvider>
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
-            <BottomNavigationItem 
-              label={ 'Add Domain' }
+            <BottomNavigationItem  
               icon={addDomainIcon}
               onClick={() => this.select(0)}
               containerElement={<Link to="/"/>}
             />
             <BottomNavigationItem
-              label={ 'Delete Domain' }
               icon={deleteDomainIcon}
               onClick={() => this.select(1)}
               containerElement={<Link to="/deleteDomain"/>}
             />
             <BottomNavigationItem
-              label={
-                <Link to='/' 
-                      className={this.props.classes.link}
-                >
-                  Search
-                </Link>
-              }
               icon={searchIcon}
               onClick={() => this.select(2)}
+              containerElement={<Link to="/search"/>}
             />
             <BottomNavigationItem
-              label={
-                <Link to='/' 
-                      className={this.props.classes.link}
-                >
-                  Add Record
-                </Link>
-              }
               icon={addRecordIcon}
               onClick={() => this.select(3)}
+              containerElement={<Link to="/addRecord"/>}
             />
             <BottomNavigationItem
-              label={
-                <Link to='/' 
-                      className={this.props.classes.link}
-                >
-                  Dig
-                </Link>
-              }
               icon={digIcon}
               onClick={() => this.select(4)}
+              containerElement={<Link to="/dig"/>}
             />
           </BottomNavigation>
         </Paper>
