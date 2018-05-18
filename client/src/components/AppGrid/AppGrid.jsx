@@ -5,8 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../Navbar/Navbar';
-import addDomain from '../addDomain/addDomain';
-import deleteDomain from '../deleteDomain/deleteDomain';
+import AddDomain from '../AddDomain/AddDomain';
+import DeleteDomain from '../DeleteDomain/DeleteDomain';
+import Search from '../Search/Search';
+import Records from '../Records/Records';
+import Dig from '../Dig/Dig';
 
 
 const styles = theme => ({
@@ -41,8 +44,11 @@ function AppGrid(props) {
         <Grid item xs={8} sm={8} md={8} lg={8}>
           <Paper className={classes.paper} elevation={16}>
             <Switch>
-              <Route exact path='/' component={addDomain}/>
-              <Route path='/deleteDomain' component={deleteDomain} />
+              <Route exact path='/' component={AddDomain}/>
+              <Route path='/deleteDomain' component={DeleteDomain} />
+              <Route path='/search' component={Search} />
+              <Route path='/addRecord' component={Records} />
+              <Route path='/dig' component={Dig} />
             </Switch>
           </Paper>
         </Grid>

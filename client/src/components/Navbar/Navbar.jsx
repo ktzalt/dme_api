@@ -5,23 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from 'material-ui/Paper';
-import IconSearch from 'material-ui/svg-icons/action/search';
-import IconDeleteForever from 'material-ui/svg-icons/action/delete-forever';
-import IconDNS from 'material-ui/svg-icons/action/dns';
-import IconBuild from 'material-ui/svg-icons/action/build';
-import IconFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import {addDomainIcon, deleteDomainIcon, searchIcon, addRecordIcon, digIcon} from '../Icons/Icons' 
 
-const iconStyle = {
-  color: 'inherit', 
-  transform: 'scale(1.6)',
-  marginTop: 7,
-};
-
-const addDomainIcon = <IconDNS style={iconStyle} />;
-const deleteDomainIcon = <IconDeleteForever style={iconStyle}/>;
-const searchIcon = <IconSearch style={iconStyle}/>;
-const addRecordIcon = <IconBuild style={iconStyle}/>;
-const digIcon = <IconFavoriteBorder style={iconStyle}/>
 
 const styles = ({
   link: { 
