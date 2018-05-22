@@ -10,7 +10,8 @@ class AddDomain extends Component {
     return (
       <div>
         {lgAddDomainIcon}
-        <DomainForm 
+        <DomainForm
+          textFieldLabel='Domain' 
           buttonName='Add Domain'
         />
       </div>

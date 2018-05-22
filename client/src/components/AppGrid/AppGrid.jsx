@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -31,7 +31,8 @@ function AppGrid(props) {
         <Grid item xs={8} sm={8} md={8} lg={8}>
           <Paper className={classes.paper} elevation={16}>
             <Switch>
-              <Route exact path='/' component={AddDomain}/>
+              <Redirect from='/' exact to='/addDomain'/>
+              <Route path='/addDomain' component={AddDomain} />
               <Route path='/deleteDomain' component={DeleteDomain} />
               <Route path='/search' component={Search} />
               <Route path='/addRecord' component={Records} />
