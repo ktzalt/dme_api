@@ -11,7 +11,7 @@ class AddDomain extends Component {
       <div>
         {lgAddDomainIcon}
         <DomainForm
-          textFieldLabel='Domain' 
+          textFieldName='Domain' 
           buttonName='Add Domain'
         />
       </div>

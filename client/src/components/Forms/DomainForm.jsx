@@ -17,7 +17,7 @@ class DomainForm extends Component {
     fieldErrors: {}
   }
 
-  onFormSubmit = evt => {
+  handleSubmit = evt => {
     const domain = this.state.domain;
     const fieldErrors = this.validate(domain);
     this.setState({fieldErrors});
@@ -28,11 +28,9 @@ class DomainForm extends Component {
     console.log("Button pressed");
   };
 
-  onInputChange = evt => {
-    const fields = Object.assign({}, this.state.domain);
-    fields[evt.target.name] = evt.target.value;
-    this.setState({fields});
-  };
+  handleChange = evt => {
+    this.setState({domain:evt.target.value});
+  }
 
   validate = domain => {
     const errors = {};
@@ -44,18 +42,21 @@ class DomainForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <TextField
-          label={this.props.textFieldLabel}
+          label={this.props.textFieldName}
+          name={this.props.textFieldName}
           className={this.props.classes.textField}
+          value={this.state.domain}
+          onChange={this.handleChange}
           fullWidth={true}
         />
         <br/>
         <Button 
           variant="outlined" 
-          color="primary" 
-          className={this.props.classes.button}
-        >
+          color="primary"
+          type='submit'
+          className={this.props.classes.button}>
           {this.props.buttonName}
         </Button>
       </form>
