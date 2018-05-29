@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import isURL from 'validator/lib/isURL';
 
 class DomainForm extends Component {
@@ -14,29 +17,30 @@ class DomainForm extends Component {
 
   state = {
     domain:'',
-    fieldErrors: {}
+    domainErrors: false,
   }
 
   handleSubmit = evt => {
-    const domain = this.state.domain;
-    const fieldErrors = this.validate(domain);
-    this.setState({fieldErrors});
     evt.preventDefault();
-
-    if (Object.keys(fieldErrors).length) return;
-
-    console.log("Button pressed");
+    const domain = this.state.domain;
+    if (this.validate(domain)) {
+      console.log("Button pressed");
+    } else {
+      console.log('ERROR');
+      this.setState({domainErrors: true});
+      return;
+    }
   };
 
   handleChange = evt => {
-    this.setState({domain:evt.target.value});
+    this.setState({domainErrors: false});
+    this.setState({domain: evt.target.value});
   }
 
   validate = domain => {
-    const errors = {};
-    if (!domain) errors.domain = 'Domain Required';
-    if(domain && !isURL(domain)) errors.domain = 'Invalid Domain';
-    return errors;
+    if(isURL(domain)) {
+      return true;
+    } else return false;
   }
 
 
@@ -50,8 +54,36 @@ class DomainForm extends Component {
           value={this.state.domain}
           onChange={this.handleChange}
           fullWidth={true}
+          error={this.state.domainErrors}
         />
         <br/>
+        <FormGroup row className={this.props.classes.selectorForm}>
+          <FormControlLabel
+            control={
+              <Switch
+                // checked={this.state.checkedA}
+                // onChange={this.handleChange('checkedA')}
+                value="Google"
+              />
+            }
+            label="Google"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                // checked={this.state.checkedB}
+                // onChange={this.handleChange('checkedB')}
+                value="GoDaddy"
+              />
+            }
+            label="GoDaddy"
+          />
+          <FormControlLabel 
+          control={
+            <Switch value="NetworkSolutions" 
+            />
+          } label="NetSol" />
+        </FormGroup>
         <Button 
           variant="outlined" 
           color="primary"
@@ -72,6 +104,9 @@ const styles = () => ({
   button: {
     marginTop: 50,
     color: 'RGB(0,188,212)'
+  },
+  selectorForm: {
+    marginTop: 10,
   }
 });
 

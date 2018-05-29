@@ -24,8 +24,10 @@ const titleStyle = {
 
 export const lgAddDomainIcon = 
   <MuiThemeProvider>
-    <h1 style={titleStyle}>ADD DOMAIN</h1>
-    <IconDNS style={lgIconStyle} />
+    <div>
+      <h1 style={titleStyle}>ADD DOMAIN</h1>
+      <IconDNS style={lgIconStyle} />
+    </div>
   </MuiThemeProvider>
 ;
 
