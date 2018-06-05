@@ -6,7 +6,7 @@ import IconDNS from 'material-ui/svg-icons/action/dns';
 import IconBuild from 'material-ui/svg-icons/action/build';
 import IconFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-
+// Styles and variables
 const primaryBlue = 'RGB(0,188,212)';
 const lgIconStyle = {
   color: primaryBlue, 
@@ -22,6 +22,8 @@ const titleStyle = {
   marginTop: 50,
 }
 
+
+// Icons
 export const lgAddDomainIcon = 
   <MuiThemeProvider>
     <div>
@@ -34,32 +36,41 @@ export const lgAddDomainIcon =
 
 export const lgDeleteDomainIcon =
   <MuiThemeProvider>
-    <h1 style={titleStyle}>DELETE DOMAIN</h1>
-    <IconDeleteForever style={lgIconStyle} />
+    <div>
+      <h1 style={titleStyle}>DELETE DOMAIN</h1>
+      <IconDeleteForever style={lgIconStyle} />
+    </div>
   </MuiThemeProvider>
 ;
 
 export const lgSearchIcon =
   <MuiThemeProvider>
-    <h1 style={titleStyle}>SEARCH DOMAINS</h1>
-    <IconSearch style={lgIconStyle} />
+    <div>
+      <h1 style={titleStyle}>SEARCH DOMAINS</h1>
+      <IconSearch style={lgIconStyle} />
+    </div>
   </MuiThemeProvider>
 ;
 
 export const lgAddRecordIcon =
   <MuiThemeProvider>
-    <h1 style={titleStyle}>RECORDS</h1>
-    <IconBuild style={lgIconStyle} />
+    <div>
+      <h1 style={titleStyle}>RECORDS</h1>
+      <IconBuild style={lgIconStyle} />
+    </div>
   </MuiThemeProvider>
 ;
 
 export const lgDigIcon =
   <MuiThemeProvider>
-    <h1 style={titleStyle}>DIG</h1>
-    <IconFavoriteBorder style={lgIconStyle} />
+    <div>
+      <h1 style={titleStyle}>DIG</h1>
+      <IconFavoriteBorder style={lgIconStyle} />
+    </div>
   </MuiThemeProvider>
 ;
 
+// Simple, small icons
 export const addDomainIcon = <IconDNS style={smIconStyle} />;
 export const deleteDomainIcon = <IconDeleteForever style={smIconStyle}/>;
 export const searchIcon = <IconSearch style={smIconStyle}/>;

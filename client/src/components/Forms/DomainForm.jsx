@@ -17,24 +17,25 @@ class DomainForm extends Component {
 
   state = {
     domain:'',
-    domainErrors: false,
+    domainFieldErrors: false,
   }
 
   handleSubmit = evt => {
     evt.preventDefault();
     const domain = this.state.domain;
-    if (this.validate(domain)) {
-      console.log("Button pressed");
-    } else {
-      console.log('ERROR');
-      this.setState({domainErrors: true});
-      return;
-    }
-  };
+    const domainFieldErrors = this.state.domainFieldErrors;
+    if (domainFieldErrors || domain === '') return
+
+    console.log(domain);
+  }
 
   handleChange = evt => {
-    this.setState({domainErrors: false});
-    this.setState({domain: evt.target.value});
+    this.setState({domain: evt.target.value}, () => {
+      if (this.state.domain === ''){
+        this.setState({domainFieldErrors: false});
+      }
+    });
+    this.setState({domainFieldErrors: !this.validate(evt.target.value)});
   }
 
   validate = domain => {
@@ -54,7 +55,7 @@ class DomainForm extends Component {
           value={this.state.domain}
           onChange={this.handleChange}
           fullWidth={true}
-          error={this.state.domainErrors}
+          error={this.state.domainFieldErrors}
         />
         <br/>
         <FormGroup row className={this.props.classes.selectorForm}>

@@ -13,6 +13,7 @@ class AddDomain extends Component {
         <DomainForm
           textFieldName='Domain' 
           buttonName='Add Domain'
+          mxVisibility='visible'
         />
       </div>
     );
