@@ -18,7 +18,8 @@ class DeleteDomain extends Component {
         {lgDeleteDomainIcon}
         <DomainForm
           textFieldName='Domain'  
-          buttonName="Delete Domain"
+          buttonName='Delete Domain'
+          mxVisibility={false}
         />
       </div>
     );

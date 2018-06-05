@@ -9,36 +9,39 @@ import Switch from '@material-ui/core/Switch';
 import isURL from 'validator/lib/isURL';
 
 class DomainForm extends Component {
-  static propTypes = {
-    placeholder: PropTypes.string,
-    value: PropTypes.string,
-    validate: PropTypes.func,
-  };
-
   state = {
     domain:'',
     domainFieldErrors: false,
+    mxType: ''
   }
 
   handleSubmit = evt => {
     evt.preventDefault();
     const domain = this.state.domain;
+    const mxType = this.state.mxType;
     const domainFieldErrors = this.state.domainFieldErrors;
     if (domainFieldErrors || domain === '') return
 
     console.log(domain);
+    console.log(mxType);
   }
 
-  handleChange = evt => {
-    this.setState({domain: evt.target.value}, () => {
-      if (this.state.domain === ''){
-        this.setState({domainFieldErrors: false});
-      }
-    });
-    this.setState({domainFieldErrors: !this.validate(evt.target.value)});
+  handleChange = name => evt => {
+    if (name === 'domain') {
+      this.setState({domain: evt.target.value}, () => {
+        if (this.state.domain === ''){
+          this.setState({domainFieldErrors: false});
+        }
+      });
+      this.setState({domainFieldErrors: !this.validateURL(evt.target.value)});
+    }
+    if (name === 'mxType') {
+      this.setState({mxType: evt.target.value});
+    }
+
   }
 
-  validate = domain => {
+  validateURL = domain => {
     if(isURL(domain)) {
       return true;
     } else return false;
@@ -48,50 +51,57 @@ class DomainForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+
         <TextField
           label={this.props.textFieldName}
           name={this.props.textFieldName}
           className={this.props.classes.textField}
           value={this.state.domain}
-          onChange={this.handleChange}
+          onChange={this.handleChange('domain')}
           fullWidth={true}
           error={this.state.domainFieldErrors}
         />
+
         <br/>
+        
+        {this.props.mxVisibility &&
         <FormGroup row className={this.props.classes.selectorForm}>
           <FormControlLabel
             control={
               <Switch
-                // checked={this.state.checkedA}
-                // onChange={this.handleChange('checkedA')}
-                value="Google"
+                onChange={this.handleChange('mxType')}
+                value='google'
               />
             }
-            label="Google"
+            label='Google'
           />
           <FormControlLabel
             control={
               <Switch
-                // checked={this.state.checkedB}
-                // onChange={this.handleChange('checkedB')}
-                value="GoDaddy"
+                onChange={this.handleChange('mxType')}
+                value='godaddy'
               />
             }
-            label="GoDaddy"
+            label='GoDaddy'
           />
           <FormControlLabel 
           control={
-            <Switch value="NetworkSolutions" 
+            <Switch 
+              onChange={this.handleChange('mxType')}
+              value='networksolutions' 
             />
-          } label="NetSol" />
+          } label='NetSol' />
         </FormGroup>
+        }
+        
         <Button 
-          variant="outlined" 
-          color="primary"
+          variant='outlined' 
+          color='primary'
           type='submit'
           className={this.props.classes.button}>
           {this.props.buttonName}
         </Button>
+        
       </form>
     );
   }
@@ -110,5 +120,12 @@ const styles = () => ({
     marginTop: 10,
   }
 });
+
+DomainForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  textFieldName: PropTypes.string.isRequired,
+  buttonName: PropTypes.string.isRequired,
+  mxVisibility: PropTypes.bool.isRequired,
+};
 
 export default withStyles(styles)(DomainForm);
