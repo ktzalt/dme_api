@@ -5,27 +5,32 @@ import {lgDeleteDomainIcon} from '../Icons/Icons';
 import DomainForm from '../Forms/DomainForm'
 
 
-const styles = () => ({
-
-});
-
-
-
 class DeleteDomain extends Component {
+
+  deleteDomain = (domain) => {
+    console.log("I'm from a prop");
+  }
+
   render(){
     return (
       <div>
         {lgDeleteDomainIcon}
         <DomainForm
+          type='delete'
           textFieldName='Domain'  
           buttonName='Delete Domain'
           mxVisibility={false}
+          submitMethod={this.deleteDomain}
         />
       </div>
     );
   }
 
 }
+
+const styles = () => ({
+
+});
 
 DeleteDomain.propTypes = {
   classes: PropTypes.object.isRequired,

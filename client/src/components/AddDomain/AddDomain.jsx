@@ -6,14 +6,20 @@ import DomainForm from '../Forms/DomainForm';
 
 class AddDomain extends Component {
 
+  addDomain = (domain, mxType) => {
+    console.log("I'm from a prop");
+  }
+
   render(){
     return (
       <div>
         {lgAddDomainIcon}
         <DomainForm
+          type='add'
           textFieldName='Domain' 
           buttonName='Add Domain'
           mxVisibility={true}
+          submitMethod={this.addDomain}
         />
       </div>
     );
@@ -22,9 +28,7 @@ class AddDomain extends Component {
 }
 
 const styles = () => ({
-  title: {
-    marginTop: 50,
-  }
+
 });
 
 AddDomain.propTypes = {

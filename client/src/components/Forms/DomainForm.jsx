@@ -22,8 +22,12 @@ class DomainForm extends Component {
     const domainFieldErrors = this.state.domainFieldErrors;
     if (domainFieldErrors || domain === '') return
 
-    console.log(domain);
-    console.log(mxType);
+    if (this.props.type === 'add') {
+      this.props.submitMethod(domain, mxType);
+    }
+    if (this.props.type === 'delete') {
+      this.props.submitMethod(domain, mxType);
+    }
   }
 
   handleChange = name => evt => {
