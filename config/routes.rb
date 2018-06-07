@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/api/domains' => 'dme#show_domains'
 
   # AGENT DOMAIN 
-  post '/api/domain' => 'dme#create__agent_domain'
+  post '/api/domain' => 'dme#create_agent_domain'
   delete '/api/domain' => 'dme#delete_agent_domain'
     
 end

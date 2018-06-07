@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {lgAddDomainIcon} from '../Icons/Icons';
 import DomainForm from '../Forms/DomainForm';
+import axios from 'axios';
 
 class AddDomain extends Component {
 
   addDomain = (domain, mxType) => {
-    console.log("I'm from a prop");
+    axios.post('/api/domain', {
+      domain: domain,
+      mx_type: mxType
+    })
+    .then(res => {
+      console.log(res);
+    })
   }
 
   render(){
