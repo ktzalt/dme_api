@@ -60,7 +60,6 @@ class DmeController < ApplicationController
     dme.create_record(params[:domain], 'docs', 'CNAME', 'ghs.google.com.', {})
     dme.create_record(params[:domain], 'mail', 'CNAME', 'ghs.google.com.', {})
     dme.create_record(params[:domain], 'start', 'CNAME', 'ghs.google.com.', {})
-    puts 'no record type selected'
   end
 
   #Creates GoDaddy MX and CNAME records
@@ -76,7 +75,6 @@ class DmeController < ApplicationController
     dme.create_record(params[:domain], 'pop', 'CNAME', 'pop.secureserver.net.', {})
     dme.create_record(params[:domain], 'smtp', 'CNAME', 'smtp.secureserver.net.', {})
     dme.create_record(params[:domain], 'webmail', 'CNAME', 'webmail.secureserver.net.', {})
-    puts 'no record type selected'
   end
 
   #Creates NetworkSolution MX and CNAME records
@@ -85,7 +83,6 @@ class DmeController < ApplicationController
 
     dme.create_record(params[:domain], 'mail', 'CNAME', "mail.#{params[:domain]}.netsolmail.net.", {})
     dme.create_record(params[:domain], 'mail', 'CNAME', "smtp.#{params[:domain]}.netsolmail.net.", {})
-    puts 'no record type selected'
   end
 
   # Creates the default ANAME and CNAME records for all zones
@@ -115,14 +112,14 @@ class DmeController < ApplicationController
   # Creates the agent zone in DME
   def create_agent_domain
     return false unless validate_params
+    puts '########## CREATING DOMAIN ##########'
     dme.create_domain(params[:domain])
-    puts 'created domain'
+    puts '########## CREATING DEFAULT RECORDS ##########'
     create_default_records
-    puts 'created default records'
+    puts '########## CREATING ADDITIONAL RECORDS ##########'
     create_additional_records
-    puts 'created additional records'
+    puts '########## RENDERING DATA TO CLIENT##########'
     show_domain
-    puts 'showing domain'
   end
 
   # Deletes the agent zone in DME

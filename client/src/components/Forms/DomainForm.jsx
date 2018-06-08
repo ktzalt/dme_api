@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import isURL from 'validator/lib/isURL';
+import MxSwitches from './MxSwitches';
 
 class DomainForm extends Component {
   state = {
@@ -20,9 +18,10 @@ class DomainForm extends Component {
     const domain = this.state.domain;
     const mxType = this.state.mxType;
     const domainFieldErrors = this.state.domainFieldErrors;
-    if (domainFieldErrors || domain === '') return
+    if (domainFieldErrors || domain === '') return;
 
     if (this.props.type === 'add') {
+      console.log(domain, mxType);
       this.props.submitMethod(domain, mxType);
     }
     if (this.props.type === 'delete') {
@@ -63,40 +62,11 @@ class DomainForm extends Component {
           value={this.state.domain}
           onChange={this.handleChange('domain')}
           fullWidth={true}
-          error={this.state.domainFieldErrors}
-        />
+          error={this.state.domainFieldErrors} />
 
-        <br />
+        <br/>
 
-        {this.props.mxVisibility &&
-          <FormGroup row className={this.props.classes.selectorForm}>
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={this.handleChange('mxType')}
-                  value='gmail'
-                />
-              }
-              label='Google'
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={this.handleChange('mxType')}
-                  value='godaddy'
-                />
-              }
-              label='GoDaddy'
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={this.handleChange('mxType')}
-                  value='networksolutions'
-                />
-              } label='NetSol' />
-          </FormGroup>
-        }
+        {this.props.mxVisibility && <MxSwitches handleChange={this.handleChange}/>}
 
         <Button
           variant='outlined'

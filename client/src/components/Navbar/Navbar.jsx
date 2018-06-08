@@ -5,15 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from 'material-ui/Paper';
-import {addDomainIcon, deleteDomainIcon, searchIcon, addRecordIcon, digIcon} from '../Icons/Icons' 
-
-
-const styles = ({
-  link: { 
-    color: 'inherit',
-    textDecoration: 'none',
-  }
-});
+import {addDomainIcon, deleteDomainIcon, searchIcon, addRecordIcon, digIcon} from '../Icons/Icons'; 
 
 
 class Navbar extends Component {
@@ -21,6 +13,29 @@ class Navbar extends Component {
     selectedIndex: 0,
   };
 
+  componentDidMount() {
+    // ensures the correct icon in navbar is highlighted
+    switch (window.location.pathname) {
+      case '/addDomain':
+        this.select(0);
+        break;
+      case '/deleteDomain':
+        this.select(1);
+        break;
+      case '/search':
+        this.select(2);
+        break;
+      case '/records':
+        this.select(3);
+        break;
+      case '/dig':
+        this.select(4);
+        break;
+      default:
+        console.log('path unknown to navbar');
+        break;
+    }
+  }
 
   select = (index) => this.setState({selectedIndex: index});
 
@@ -47,7 +62,7 @@ class Navbar extends Component {
             <BottomNavigationItem
               icon={addRecordIcon}
               onClick={() => this.select(3)}
-              containerElement={<Link to="/addRecord"/>}
+              containerElement={<Link to="/records"/>}
             />
             <BottomNavigationItem
               icon={digIcon}
@@ -60,6 +75,13 @@ class Navbar extends Component {
     );
   }
 }
+
+const styles = ({
+  link: { 
+    color: 'inherit',
+    textDecoration: 'none',
+  }
+});
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired,

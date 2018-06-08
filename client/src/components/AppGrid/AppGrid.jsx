@@ -35,7 +35,7 @@ function AppGrid(props) {
               <Route path='/addDomain' component={AddDomain} />
               <Route path='/deleteDomain' component={DeleteDomain} />
               <Route path='/search' component={Search} />
-              <Route path='/addRecord' component={Records} />
+              <Route path='/records' component={Records} />
               <Route path='/dig' component={Dig} />
             </Switch>
           </Paper>
