@@ -128,7 +128,7 @@ class DmeController < ApplicationController
   # Deletes the agent zone in DME
   def delete_agent_domain
     return false unless validate_domain
-    dme.delete_domain(params[:domain])
+    render json: dme.delete_domain(params[:domain])
   end
 
 end

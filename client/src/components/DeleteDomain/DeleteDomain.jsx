@@ -2,13 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {lgDeleteDomainIcon} from '../Icons/Icons';
-import DomainForm from '../Forms/DomainForm'
+import DomainForm from '../Forms/DomainForm';
+import axios from 'axios';
 
 
 class DeleteDomain extends Component {
 
   deleteDomain = (domain) => {
-    console.log("I'm from a prop");
+    axios.delete('/api/domain', {
+      params: { domain: domain }
+    })
+    .then(res => {
+      console.log(res);
+    })
   }
 
   render(){
