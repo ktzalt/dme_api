@@ -1,24 +1,13 @@
-# README
+# DME
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails 5 powered React app that presently allows users to add and delete domains to and from Dns Made Easy
 
-Things you may want to cover:
+Build Requirements:
 
-* Ruby version
+* Ruby version: 2.5.0
 
-* System dependencies
+* Rails version: 5.1.6
 
-* Configuration
+* npm version: 5.6.0
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database: None, this app relies solely on the Dns Made Easy API and services
